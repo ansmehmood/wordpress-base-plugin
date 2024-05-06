@@ -27,8 +27,8 @@ if( !defined( 'ABSPATH' ) ) {
 /**
  * Define plugin base url and plugin base path to be used throughout the plugin
  */
-define( 'AN_BASE_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
-define( 'AN_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'AM_BASE_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'AM_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 
 /**
@@ -36,9 +36,9 @@ define( 'AN_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  */
 function am_activation_callback() {
 
-    if( file_exists( AN_BASE_PLUGIN_PATH . '/includes/core/class-am-activator.php' ) ) {
+    if( file_exists( AM_BASE_PLUGIN_PATH . '/includes/core/class-am-activator.php' ) ) {
 
-        require_once( AN_BASE_PLUGIN_PATH . '/includes/core/class-am-activator.php' );
+        require_once( AM_BASE_PLUGIN_PATH . '/includes/core/class-am-activator.php' );
         new AMActivator();
     }
 }
@@ -51,15 +51,18 @@ register_activation_hook( __FILE__, 'am_activation_callback' );
  */
 function am_deactivation_callback() {
 
-    if( file_exists( AN_BASE_PLUGIN_PATH . '/includes/core/class-am-deactivator.php' ) ) {
+    if( file_exists( AM_BASE_PLUGIN_PATH . '/includes/core/class-am-deactivator.php' ) ) {
 
-        require_once( AN_BASE_PLUGIN_PATH . '/includes/core/class-am-deactivator.php' );
+        require_once( AM_BASE_PLUGIN_PATH . '/includes/core/class-am-deactivator.php' );
         new AMDeactivator();
     }
 }
 
 register_deactivation_hook( __FILE__, 'am_deactivation_callback' );
 
-if( file_exists() ) {
+
+if( file_exists( AM_BASE_PLUGIN_PATH . '/includes/core/class-am-core.php' ) ) {
     
+    require_once( AM_BASE_PLUGIN_PATH . '/includes/core/class-am-core.php' );
+    new AMCore();
 }
